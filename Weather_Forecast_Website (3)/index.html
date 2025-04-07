@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script defer src="js/script.js"></script>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+            background-image: url('assets/images/clear-sky.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        #dark-mode-toggle {
+            background-color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        #dark-mode-toggle:hover {
+            background-color: #ddd;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #2f2f2f;
+            color: white;
+        }
+
+        .container.dark-mode {
+            background-color: #333;
+        }
+
+        header.dark-mode {
+            background-color: #555;
+        }
+
+        /* Search Bar Styles */
+        .search-bar {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .search-bar button:hover {
+            background-color: #45a049;
+        }
+
+        /* Weather Display Section */
+        .weather-display {
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .weather-display h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .weather-display p {
+            font-size: 1rem;
+        }
+
+        /* Forecast Section */
+        .forecast {
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+        }
+
+        .forecast div {
+            width: 30%;
+            min-width: 200px;
+            text-align: center;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f7f7f7;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .forecast div:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .forecast div h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .forecast div p {
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #555;
+        }
+
+        /* Modal for Weather Details */
+        #weather-modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        #weather-modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <h1>Weather Forecast</h1>
+            <button id="dark-mode-toggle">Toggle Dark Mode</button>
+        </header>
+
+        <!-- Search Bar Section -->
+        <section class="search-bar">
+            <input type="text" id="city-input" placeholder="Enter city name...">
+            <button id="search-button">Search</button>
+            <button id="refresh-button">Refresh</button>
+        </section>
+
+        <!-- Current Weather Display Section -->
+        <section class="weather-display">
+            <h2>Current Weather</h2>
+            <div id="current-weather">
+                <p><strong>Temperature:</strong> 24°C</p>
+                <p><strong>Condition:</strong> Partly Cloudy</p>
+                <p><strong>Humidity:</strong> 60%</p>
+                <p><strong>Wind Speed:</strong> 12 km/h</p>
+                <button id="weather-details">More Details</button>
+            </div>
+        </section>
+
+        <!-- Weather Forecast Section -->
+        <section class="forecast">
+            <h2>3-Day Forecast</h2>
+            <div>
+                <h4>Day 1</h4>
+                <p>Min: 20°C, Max: 28°C</p>
+                <p>Condition: Cloudy</p>
+            </div>
+            <div>
+                <h4>Day 2</h4>
+                <p>Min: 18°C, Max: 26°C</p>
+                <p>Condition: Rainy</p>
+            </div>
+            <div>
+                <h4>Day 3</h4>
+                <p>Min: 22°C, Max: 30°C</p>
+                <p>Condition: Sunny</p>
+            </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer>
+            <p>Weather Forecast &copy; vidhikaswa</p>
+        </footer>
+
+        <!-- Modal for Weather Details -->
+        <div id="weather-modal">
+            <div id="weather-modal-content">
+                <span class="close">&times;</span>
+                <h2>Detailed Weather Information</h2>
+                <p><strong>Condition:</strong> Partly Cloudy</p>
+                <p><strong>Temperature:</strong> 24°C</p>
+                <p><strong>Humidity:</strong> 60%</p>
+                <p><strong>Wind Speed:</strong> 12 km/h</p>
+                <p><strong>Pressure:</strong> 1015 hPa</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dark Mode Toggle
+        const toggleButton = document.getElementById('dark-mode-toggle');
+        toggleButton.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            document.querySelector('.container').classList.toggle('dark-mode');
+            document.querySelector('header').classList.toggle('dark-mode');
+        });
+
+        // Open Modal for Weather Details
+        document

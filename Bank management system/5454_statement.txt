@@ -1,0 +1,3 @@
+📜 Transaction Statement for Account: 5454
+Withdrew: $200.0
+Current Balance: $4799.0

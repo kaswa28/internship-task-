@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Todo App</h1>
+    <div id="auth-container">
+      <!-- Login Form -->
+      <div id="login-form">
+        <h2>Login</h2>
+        <input type="text" id="login-username" placeholder="Username" />
+        <input type="password" id="login-password" placeholder="Password" />
+        <button id="login-btn">Login</button>
+        <p>Don't have an account? <a href="#" id="show-register">Register here</a></p>
+      </div>
+
+      <!-- Register Form -->
+      <div id="register-form" style="display: none;">
+        <h2>Register</h2>
+        <input type="text" id="register-username" placeholder="Username" />
+        <input type="password" id="register-password" placeholder="Password" />
+        <button id="register-btn">Register</button>
+        <p>Already have an account? <a href="#" id="show-login">Login here</a></p>
+      </div>
+
+      <!-- Main Todo App (Hidden until login) -->
+      <div id="todo-app" style="display: none;">
+        <div class="top-bar">
+          <button id="toggle-dark-mode" class="dark-mode-btn">🌙</button>
+          <input type="text" id="search-task" placeholder="Search tasks..." />
+        </div>
+
+        <h2 id="task-count">0 Tasks | 0 Completed</h2>
+        
+        <!-- Task Input Section -->
+        <div class="todo-input">
+          <input type="text" id="task-input" placeholder="Add a new task" />
+          <input type="date" id="task-due-date" />
+          <select id="task-category">
+            <option value="Work">Work</option>
+            <option value="Personal">Personal</option>
+            <option value="Urgent">Urgent</option>
+          </select>
+          <select id="task-priority">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+          <button id="add-task-btn">Add Task</button>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+          <select id="filter-category">
+            <option value="All">All Categories</option>
+            <option value="Work">Work</option>
+            <option value="Personal">Personal</option>
+            <option value="Urgent">Urgent</option>
+          </select>
+
+          <select id="filter-priority">
+            <option value="All">All Priorities</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+
+        <!-- Task List -->
+        <ul id="task-list"></ul>
+
+        <!-- Task Action Buttons -->
+        <button id="logout-btn">Logout</button>
+        <button id="clear-all-btn">Clear All Completed Tasks</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

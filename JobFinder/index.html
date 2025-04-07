@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Finder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #0f172a; font-family: 'Poppins', sans-serif; color: #fff; }
+        .navbar { background: #1e293b; padding: 15px; }
+        .navbar-brand { color: #ff7eb3 !important; font-size: 1.8rem; font-weight: bold; }
+        .nav-link { color: white !important; margin-right: 15px; }
+        .hero-section { text-align: center; padding: 60px 20px; background: linear-gradient(45deg, #ff758c, #ff7eb3); border-radius: 10px; }
+        .filter-bar { padding: 20px; background: #1e293b; border-radius: 8px; margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+        .filter-bar input, .filter-bar select, .filter-bar button { flex: 1; min-width: 180px; }
+        .job-card { background: #334155; padding: 20px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.2); margin-bottom: 20px; transition: transform 0.3s ease-in-out; }
+        .job-card:hover { transform: scale(1.05); cursor: pointer; }
+        .btn-custom { border-radius: 20px; font-weight: bold; transition: 0.3s; }
+        .btn-custom:hover { opacity: 0.8; }
+        .section { padding: 50px 0; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">JobFinder</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#jobs">Jobs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#apply">Apply</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mt-4">
+        <div class="hero-section">
+            <h1 class="mb-3">Find Your Dream Job</h1>
+            <p>Discover thousands of job opportunities in various industries.</p>
+        </div>
+
+        <div class="filter-bar text-center mt-4">
+            <input type="text" class="form-control" id="jobSearch" placeholder="Search Job Title">
+            <input type="text" class="form-control" id="locationSearch" placeholder="Enter City or 'Remote'">
+            <select class="form-control" id="categoryFilter">
+                <option>All Categories</option>
+                <option>Software</option>
+                <option>Marketing</option>
+                <option>Design</option>
+                <option>Finance</option>
+            </select>
+            <select class="form-control" id="levelFilter">
+                <option>All Levels</option>
+                <option>Entry Level</option>
+                <option>Mid Level</option>
+                <option>Senior Level</option>
+            </select>
+            <select class="form-control" id="salaryFilter">
+                <option>All Salaries</option>
+                <option>Below $50k</option>
+                <option>$50k - $100k</option>
+                <option>Above $100k</option>
+            </select>
+            <select class="form-control" id="jobTypeFilter">
+                <option>All Job Types</option>
+                <option>Full-time</option>
+                <option>Part-time</option>
+                <option>Internship</option>
+            </select>
+            <button class="btn btn-danger btn-custom" id="resetFilters">Reset Filters</button>
+        </div>
+
+        <div class="row mt-4" id="jobs">
+            <!-- Job Listings -->
+            <div class="col-md-4 job-card" data-category="Software" data-level="Mid Level" data-salary="Above $100k" data-type="Full-time">
+                <h4>Software Engineer</h4>
+                <p>Google - Bangalore, India</p>
+                <p>Develop and maintain software solutions...</p>
+                <a href="#apply" class="btn btn-primary">Apply</a>
+            </div>
+
+            <div class="col-md-4 job-card" data-category="Marketing" data-level="Entry Level" data-salary="Below $50k" data-type="Part-time">
+                <h4>Digital Marketing</h4>
+                <p>Pune, India</p>
+                <p>Manage and execute online marketing campaigns...</p>
+                <a href="#apply" class="btn btn-primary">Apply</a>
+            </div>
+
+            <div class="col-md-4 job-card" data-category="Design" data-level="Senior Level" data-salary="$50k - $100k" data-type="Full-time">
+                <h4>UI/UX Designer</h4>
+                <p>Adobe - Remote</p>
+                <p>Design interactive user experiences...</p>
+                <a href="#apply" class="btn btn-primary">Apply</a>
+            </div>
+
+            <div class="col-md-4 job-card" data-category="Software" data-level="Mid Level" data-salary="Above $100k" data-type="Full-time">
+                <h4>Data Analyst</h4>
+                <p>Amazon - Seattle, USA</p>
+                <p>Analyze data trends and provide insights...</p>
+                <a href="#apply" class="btn btn-primary">Apply</a>
+            </div>
+
+            <div class="col-md-4 job-card" data-category="Finance" data-level="Senior Level" data-salary="$50k - $100k" data-type="Part-time">
+                <h4>Business Analyst</h4>
+                <p>Deloitte - London, UK</p>
+                <p>Help businesses make data-driven decisions...</p>
+                <a href="#apply" class="btn btn-primary">Apply</a>
+            </div>
+
+            <div class="col-md-4 job-card" data-category="HR" data-level="Entry Level" data-salary="Below $50k" data-type="Internship">
+                <h4>HR Manager</h4>
+                <p>Tesla - California, USA</p>
+                <p>Oversee recruitment and employee relations...</p>
+                <a href="#apply" class="btn btn-primary">Apply</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container section" id="apply">
+        <h2 class="text-center">Apply for a Job</h2>
+        <form class="mt-4">
+            <div class="mb-3">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Resume</label>
+                <input type="file" class="form-control">
+            </div>
+            <button class="btn btn-primary btn-custom">Submit Application</button>
+        </form>
+    </div>
+
+    <div class="container section" id="contact">
+        <h2 class="text-center">Contact Us</h2>
+        <p class="text-center">For any inquiries, reach us at <strong>support@jobfinder.com</strong></p>
+    </div>
+
+    <script>
+        function filterJobs() {
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            const levelFilter = document.getElementById('levelFilter').value;
+            const salaryFilter = document.getElementById('salaryFilter').value;
+            const jobTypeFilter = document.getElementById('jobTypeFilter').value;
+            const jobs = document.querySelectorAll('.job-card');
+            
+            jobs.forEach(job => {
+                const category = job.getAttribute('data-category');
+                const level = job.getAttribute('data-level');
+                const salary = job.getAttribute('data-salary');
+                const type = job.getAttribute('data-type');
+
+                if ((categoryFilter === "All Categories" || category === categoryFilter) &&
+                    (levelFilter === "All Levels" || level === levelFilter) &&
+                    (salaryFilter === "All Salaries" || salary === salaryFilter) &&
+                    (jobTypeFilter === "All Job Types" || type === jobTypeFilter)) {
+                    job.style.display = 'block';
+                } else {
+                    job.style.display = 'none';
+                }
+            });
+        }
+
+        document.getElementById('categoryFilter').addEventListener('change', filterJobs);
+        document.getElementById('levelFilter').addEventListener('change', filterJobs);
+        document.getElementById('salaryFilter').addEventListener('change', filterJobs);
+        document.getElementById('jobTypeFilter').addEventListener('change', filterJobs);
+
+        document.getElementById('resetFilters').addEventListener('click', () => {
+            document.getElementById('categoryFilter').value = "All Categories";
+            document.getElementById('levelFilter').value = "All Levels";
+            document.getElementById('salaryFilter').value = "All Salaries";
+            document.getElementById('jobTypeFilter').value = "All Job Types";
+            filterJobs();
+        });
+
+        // Initial call to display all jobs
+        filterJobs();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
